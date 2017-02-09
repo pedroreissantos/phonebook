@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>PhoneBook Management</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<a href="/">Return</a>
+
+	<p><b>Find people with contact</b>
+		<form action="#" th:action="@{/phonebook/find/people}" th:object="${contact}" method="post">
+			Contact Name: <input type="text" th:field="*{name}" />
+			<input type="submit" value="Submit" />
+		</form>
+		<table>
+			<th>Person</th>
+			<tr th:each="person: ${persons}">
+				<td th:text="${person.name}">Silva</td>
+			</tr>
+		</table>
+	</p>
+
+	<p><b>Find contact with phone number in all contacts</b>
+		<form action="#" th:action="@{/phonebook/find/phone}" th:object="${contact}" method="post">
+			Phone Number: <input type="text" th:field="*{phoneNumber}" />
+			<input type="submit" value="Submit" />
+		</form>
+		<span th:text="${contact.name}"> found</span>
+	</p>
+
+	<p><b>Find phone number of a contact in all people</b>
+		<form action="#" th:action="@{/phonebook/find/contact}" th:object="${contact}" method="post">
+			Contact Name: <input type="text" th:field="*{name}" />
+			<input type="submit" value="Submit" />
+		</form>
+		<span th:text="${contact.phoneNumber}"> found</span>
+	</p>
+
+	<p><b>Delete all persons (and contacts) in the <a href="/phonebook/delete">Phone Book</a></b>
+	</p>
+
+	<p>
+	<img class="img-responsive" src="../static/fenixedu.svg" th:src="@{/fenixedu.svg}"/>
+	</p>
+
+</body>
+</html>

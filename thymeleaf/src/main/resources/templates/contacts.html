@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Contact Management</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style> table, th, td { border: 1px solid black; border-collapse: collapse; } </style>
+</head>
+<body>
+	<a href="/">Return</a>
+
+	<h3>Create Contact</h3>
+		<form action="#" th:action="@{/contacts}" th:object="${contact}" method="post">
+			<p>Contact Name: <input type="text" th:field="*{name}" /></p>
+			<p>Contact Phone: <input type="text" th:field="*{phoneNumber}" /></p>
+			<p>Contact Email: <input type="text" th:field="*{email}" /></p>
+			<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+		</form>
+
+	<h3>Remove Contact</h3>
+		<form action="#" th:action="@{/contacts/remove}" th:object="${contact}" method="post">
+			<p>Contact Name: <input type="text" th:field="*{name}" /></p>
+			<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+		</form>
+
+	<h3>Contacts for <b th:text="${contact.personName}"></b></h3>
+		<table>
+			<th>Contact name</th>
+			<th>Contact phone number</th>
+			<th>Contact email</th>
+			<tr th:each="c: ${contacts}">
+				<td th:text="${c.name}">Silva</td>
+				<td th:text="${c.phoneNumber}">B123</td>
+				<td th:text="${c.email}">C1234</td>
+			</tr>
+		</table>
+	<p>
+	<img class="img-responsive" src="../static/fenixedu.svg" th:src="@{/fenixedu.svg}"/>
+	</p>
+</body>
+</html>
